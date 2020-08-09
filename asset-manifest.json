@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/stadiumcodes/static/css/main.5f361e03.chunk.css",
+    "main.js": "/stadiumcodes/static/js/main.6319e06f.chunk.js",
+    "main.js.map": "/stadiumcodes/static/js/main.6319e06f.chunk.js.map",
+    "runtime-main.js": "/stadiumcodes/static/js/runtime-main.1338cfad.js",
+    "runtime-main.js.map": "/stadiumcodes/static/js/runtime-main.1338cfad.js.map",
+    "static/js/2.307db07d.chunk.js": "/stadiumcodes/static/js/2.307db07d.chunk.js",
+    "static/js/2.307db07d.chunk.js.map": "/stadiumcodes/static/js/2.307db07d.chunk.js.map",
+    "index.html": "/stadiumcodes/index.html",
+    "precache-manifest.7ee106d58a3be8510902c9ec6bd10c05.js": "/stadiumcodes/precache-manifest.7ee106d58a3be8510902c9ec6bd10c05.js",
+    "service-worker.js": "/stadiumcodes/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/stadiumcodes/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.307db07d.chunk.js.LICENSE.txt": "/stadiumcodes/static/js/2.307db07d.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/stadiumcodes/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1338cfad.js",
+    "static/js/2.307db07d.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.6319e06f.chunk.js"
+  ]
+}
