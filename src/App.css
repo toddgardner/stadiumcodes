@@ -3,8 +3,7 @@
 }
 
 .Instructions {
-  padding-left: 3vh;
-  padding-right: 3vh;
+  padding: 3vh;
   min-height: 10vh;
 }
 
@@ -20,6 +19,10 @@
 }
 
 .Code {
+  min-height: 10vh;
+}
+
+.ResultCodes {
   min-height: 10vh;
 }
 
