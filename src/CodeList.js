@@ -3,8 +3,8 @@ import CodeForm, {checkCodeErrors, classifyRoomCode, isDigit} from "./CodeForm";
 
 class CodeListError extends Error {}
 
-function solvedResult(threeCodeUnknown, twoCodeUnknown, solvedCode) {
-  return {threeCodeUnknown, twoCodeUnknown, solvedCode}
+function solvedResult(codesWithUnknowns, solvedCodes) {
+  return {codesWithUnknowns, solvedCodes}
 }
 
 function replaceAll(str, find, replace) {
@@ -101,7 +101,7 @@ function oneCodeSolver(code1) {
   const [digits] = digitsAndChars(code1);
 
   if (room === "C") {
-    return solvedResult(undefined, [code1], getAllPotentialCodes(code1))
+    return solvedResult([code1], getAllPotentialCodes(code1))
   }
 
   let twoUnknownCodes = [];
@@ -112,7 +112,7 @@ function oneCodeSolver(code1) {
     solvedCodes = solvedCodes.concat(getAllPotentialCodes(twoUnknownCode));
   })
 
-  return solvedResult(undefined, twoUnknownCodes, solvedCodes);
+  return solvedResult(twoUnknownCodes, solvedCodes);
 }
 
 function twoCodeSolver(code1, code2) {
@@ -124,7 +124,7 @@ function twoCodeSolver(code1, code2) {
 
   let code = code1;
   mapping.forEach((digit, char) => code = replaceAll(code, char, digit));
-  return solvedResult(undefined, [code], getAllPotentialCodes(code))
+  return solvedResult([code], getAllPotentialCodes(code))
 }
 
 function threeCodeSolver(code1, code2, code3) {
@@ -136,7 +136,7 @@ function threeCodeSolver(code1, code2, code3) {
 
   let code = code1;
   mapping.forEach((digit, char) => code = replaceAll(code, char, digit));
-  return solvedResult(undefined, undefined, [code])
+  return solvedResult(undefined, [code])
 }
 
 function checkGroupProperties(codes) {
@@ -177,19 +177,19 @@ function ResultCodes({codes}) {
     return "";
   }
 
-  if (codes.solvedCode && codes.solvedCode.length === 1) {
+  if (codes.solvedCodes && codes.solvedCodes.length === 1) {
   return (
     <div className="ResultCodes">
-      Code: <strong>{codes.solvedCode[0]}</strong>
+      Code: <strong>{codes.solvedCodes[0]}</strong>
     </div>
   );
 
   }
   return (
       <div className="ResultCodes">
-        {codes.twoCodeUnknown && <div><p>The potential two unknown versions are:</p><ul className="Codes">{codes.twoCodeUnknown.map((c, i) => <li key={i}>{c}</li>)}</ul></div>}
-        <p>The number of potential codes is: {codes.solvedCode.length}</p>
-        {codes.solvedCode && <div><p>The potential codes are:</p><ul className="Codes">{codes.solvedCode.map((c, i) => <li key={i}>{c}</li>)}</ul></div>}
+        {codes.codesWithUnknowns && <div><div>The codes with unknowns are:</div><div><ul className="CodesWithUnknowns">{codes.codesWithUnknowns.map((c, i) => <li key={i}>{c}</li>)}</ul></div></div>}
+        {codes.solvedCodes && <div><p>There are {codes.solvedCodes.length} potential codes:</p><div className="Codes">{codes.solvedCodes.map((c, i) => <section key={i}>
+          <div>{c}</div></section>)}</div></div>}
      </div>
   );
 }

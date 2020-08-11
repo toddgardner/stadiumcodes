@@ -48,7 +48,7 @@ function CodeForm({code, setCode}) {
   const errors = checkCodeErrors(code);
 
   return (
-    <div className="Code">
+    <div className="CodeForm">
       <input type="text" value={code} onChange={({target: {value}}) => setCode(value.toUpperCase())} />
       {errors && code !== "" && <ul>{errors.map((e, i) => <li key={i}>{e}</li>)}</ul>}
     </div>

@@ -18,8 +18,61 @@
   color: white;
 }
 
-.Code {
+.CodeForm {
   min-height: 10vh;
+}
+
+.Codes {
+    display: flex;
+    flex-flow: row wrap;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+.Codes div {
+    text-align: center;
+    width: 100%
+}
+
+section {
+    align-items: center;
+    text-align: center;
+    background-color: #EEE;
+    box-sizing: border-box;
+    display: flex;
+    height: 8vh;
+    width: 100%;
+}
+
+section:nth-child(odd) {
+      background-color: #CCC;
+}
+
+@media screen and (min-width: 450px) {
+  section:nth-child(1n) {
+      background-color: #EEE;
+      width: 50%;
+  }
+  
+  section:nth-child(4n+1),
+  section:nth-child(4n+4) {
+    background-color: #CCC;
+  }
+}
+
+@media screen and (min-width: 1350px) {
+  section:nth-child(1n) {
+      background-color: #EEE;
+      width: 25%;
+  }
+
+  section:nth-child(8n+1),
+  section:nth-child(8n+3),
+  section:nth-child(8n+6),
+  section:nth-child(8n+8) {
+      background-color: #CCC;
+  }
 }
 
 .ResultCodes {
@@ -30,6 +83,6 @@
   list-style: none;
 }
 
-.Codes {
+.CodesWithUnknowns {
   list-style: none;
 }
