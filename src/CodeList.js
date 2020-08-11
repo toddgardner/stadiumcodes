@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import CodeForm, {checkCodeErrors, classifyRoomCode, isDigit} from "./CodeForm";
+import React, {useState, useEffect} from "react";
+import CodeInput, {checkCodeErrors, classifyRoomCode, isDigit} from "./CodeInput";
 
 class CodeListError extends Error {}
 
@@ -194,10 +194,35 @@ function ResultCodes({codes}) {
   );
 }
 
+function tryGetItem(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch (e) {}
+}
+
+function trySetItem(key, value) {
+  try {
+    return localStorage.setItem(key, value);
+  } catch (e) {}
+}
+
+function useStateWithLocalStorage(key) {
+  const [value, setValue] = useState(
+    tryGetItem(key) || ''
+  );
+
+  useEffect(() => {
+    trySetItem(key, value);
+  }, [key, value]);
+
+  return [value, setValue];
+}
+
+
 function CodeList() {
-  const [code1, setCode1] = useState("");
-  const [code2, setCode2] = useState("");
-  const [code3, setCode3] = useState("");
+  const [code1, setCode1] = useStateWithLocalStorage("code1");
+  const [code2, setCode2] = useStateWithLocalStorage("code2");
+  const [code3, setCode3] = useStateWithLocalStorage("code3");
 
   let error, codes;
   try {
@@ -212,9 +237,11 @@ function CodeList() {
 
   return (
     <div className="CodeList">
-      <CodeForm key="code1" code={code1} setCode={setCode1} />
-      <CodeForm key="code2" code={code2} setCode={setCode2} />
-      <CodeForm key="code3" code={code3} setCode={setCode3} />
+      <form name="CodeInputs">
+        <CodeInput key="code1" name="code1" code={code1} setCode={setCode1} />
+        <CodeInput key="code2" name="code2" code={code2} setCode={setCode2} />
+        <CodeInput key="code3" name="code3" code={code3} setCode={setCode3} />
+      </form>
       {error && <ul className="Errors"><li>{error}</li></ul>}
       <ResultCodes codes={codes}/>
     </div>
