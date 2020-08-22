@@ -49,7 +49,7 @@ function CodeInput({code, name, setCode}) {
 
   return (
     <div className="CodeForm">
-      <input type="text" id={name} name={name} value={code} onChange={({target: {value}}) => setCode(value.toUpperCase())} autoComplete="on" />
+      <input type="text" id={name} name={name} value={code} onChange={({target: {value}}) => setCode(value.toUpperCase().replace(/\s+/g, ''))} autoComplete="on" />
       {errors && code !== "" && <ul>{errors.map((e, i) => <li key={i}>{e}</li>)}</ul>}
     </div>
   );
